@@ -1,0 +1,6 @@
+C:\mysites\MarkdownTypescript\MarkdownTypescript\bin\MarkdownTypescript.dll.config
+C:\mysites\MarkdownTypescript\MarkdownTypescript\bin\MarkdownTypescript.dll
+C:\mysites\MarkdownTypescript\MarkdownTypescript\bin\MarkdownTypescript.pdb
+C:\mysites\MarkdownTypescript\MarkdownTypescript\obj\Debug\MarkdownTypescript.csprojResolveAssemblyReference.cache
+C:\mysites\MarkdownTypescript\MarkdownTypescript\obj\Debug\MarkdownTypescript.dll
+C:\mysites\MarkdownTypescript\MarkdownTypescript\obj\Debug\MarkdownTypescript.pdb
