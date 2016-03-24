@@ -3,6 +3,16 @@
     margin: 0;
 }
 
+body.theme-light {
+    background-color:#000;      /* TODO maybe make this a softer white? */
+    color: #000;
+}
+
+body.theme-dark {
+    background-color:#1E1E1E;
+    color:#fff;
+}
+
 .flex-container {
     display: flex;
     -ms-flex-flow: column nowrap;
@@ -13,4 +23,5 @@
 
 #editor {
     flex-basis: 100vh;
+    padding:10px;
 }

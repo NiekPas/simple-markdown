@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="css\main.css">
       <DependentUpon>main.scss</DependentUpon>
     </Content>
@@ -30,10 +31,19 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="index.html" />
+    <Content Include="js\jquery-2.2.2.min.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\markdown.js" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
+    <None Include="js\components\app.ts" />
+    <None Include="js\components\FileManager.ts" />
+    <None Include="js\components\MarkdownDocument.ts" />
+    <TypeScriptCompile Include="js\components\enums.ts" />
+    <TypeScriptCompile Include="js\components\references.ts" />
+    <TypeScriptCompile Include="js\main.ts" />
+    <TypeScriptCompile Include="js\components\typings\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\main.scss" />
@@ -79,7 +89,7 @@
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
     <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptOutFile />
