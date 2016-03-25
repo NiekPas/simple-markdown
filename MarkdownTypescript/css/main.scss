@@ -13,6 +13,17 @@ body.theme-dark {
     color:#fff;
 }
 
+#viewmode {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    opacity: 0.2;
+    transition: opacity 0.4s;
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .flex-container {
     display: flex;
     -ms-flex-flow: column nowrap;

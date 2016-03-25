@@ -1,7 +1,7 @@
 ﻿/// <reference path="components/references.ts"/>
 
 $(document).ready(() => {
-    var e = new Editor($("#editor")[0])
-    e.Viewmode = Viewmode.HTML;
-    e.Theme = ThemeOption.Light;
+    var e = new Editor($("#editor")[0]);
+    e.setViewmode(Viewmode.HTML);
+    e.setTheme(ThemeOption.Light);
 });

@@ -3,15 +3,7 @@
 class Editor {
     private document: MarkdownDocument;
     private viewmode: Viewmode = Viewmode.Markdown;
-    public set Viewmode(v : Viewmode) {
-        this.viewmode = v;
-        this.applyViewmode(this.viewmode);
-    }
     private theme: ThemeOption = ThemeOption.Dark;
-    public set Theme(t: ThemeOption) {
-        this.theme = t;
-        this.applyTheme(this.theme);
-    }
     editorElement: HTMLElement;
     
     /** 
@@ -26,15 +18,23 @@ class Editor {
     }
     
     private initialize(): void {
-        $(this.editorElement).on("keyup", e => {
-            if (e.ctrlKey && e.keyCode == 32) {	    // CTRL+spacebar 
-                var nextTheme = 
-                    this.theme == ThemeOption.Dark 
-                    ? ThemeOption.Light 
-                    : ThemeOption.Dark;
-                this.applyTheme(this.theme);
+        var self = this;
+        $("body").on("keyup", e => {
+            if (e.ctrlKey && e.keyCode == 32) {	    // CTRL+spacebar
+                var nextViewmode = 
+                    self.viewmode == Viewmode.Markdown
+                    ? Viewmode.HTML
+                    : Viewmode.Markdown
+                self.setViewmode(nextViewmode);
             }
-            this.document.MarkdownContent = $(this.editorElement).text();
+            self.document.MarkdownContent = $(self.editorElement).text();
+        });
+        $("#viewmode").on("click", () => {
+            var nextTheme = 
+                self.theme == ThemeOption.Dark 
+                ? ThemeOption.Light 
+                : ThemeOption.Dark;
+            self.setTheme(nextTheme);
         });
     }
     
@@ -42,11 +42,12 @@ class Editor {
      * Applies theme to editor.
      * @param {ThemeOption} theme - the theme to apply
      */
-    private applyTheme(theme: ThemeOption) {
-        this.theme = theme;
-        var themeStr = theme === ThemeOption.Dark
+    public setTheme(t: ThemeOption) {
+        this.theme = t;
+        var themeStr = t === ThemeOption.Dark
             ? "dark"
             : "light";
+        $("body").removeClass("theme-light theme-dark");
         $("body").addClass(`theme-${themeStr}`);
     }
     
@@ -54,10 +55,13 @@ class Editor {
      * Applies viewmode to editor.
      * @param {Viewmode} mode - the viewmode to apply
      */
-    private applyViewmode(mode: Viewmode): void {
-        var viewmodeStr = mode === Viewmode.Markdown
+    public setViewmode(m: Viewmode): void {
+        this.viewmode = m;
+        var viewmodeStr = m === Viewmode.Markdown
             ? "html"
             : "markdown"
+        $("body").removeClass("viewmode-html");
+        $("body").removeClass("viewmode-markdown");
         $("body").addClass(`viewmode-${viewmodeStr}`);
     }
 }
