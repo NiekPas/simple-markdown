@@ -1,14 +1,14 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "sourceMap": true,
         "outFile": "js/main.js",
-        "watch": true,
         "target": "es5",
         "inlineSourceMap": true,
         "listFiles": true,
         "noEmitOnError": true,
         "noImplicitReturns": true
     },
-    "compileOnSave": true
+    "files": [
+        "js/main.ts"
+    ]
 }
