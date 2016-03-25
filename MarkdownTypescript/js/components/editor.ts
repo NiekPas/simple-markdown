@@ -1,9 +1,9 @@
 ﻿/// <reference path="references.ts"/>
 
 class Editor {
-    private document: MarkdownDocument;
-    private viewmode: Viewmode = Viewmode.Markdown;
-    private theme: ThemeOption = ThemeOption.Dark;
+    private markdownContent: string;
+    private viewmode: Viewmode;
+    private theme: ThemeOption;
     editorElement: HTMLElement;
     
     /** 
@@ -12,14 +12,17 @@ class Editor {
      * @param {HTMLElement} editorElement - the HTML element which serves as the main text field
     */
     constructor(el: HTMLElement) {
-        this.document = MarkdownDocument.getInstance();
         this.editorElement = el;
-        this.initialize();	// TODO check if this actually runs
+        this.markdownContent = "# Markdown document example\n\nThis is a paragraph";
+        this.initialize();
     }
     
     private initialize(): void {
         var self = this;
         $("body").on("keyup", e => {
+            if (self.viewmode === Viewmode.Markdown) {
+                self.markdownContent = $(self.editorElement)[0].innerText;
+            }
             if (e.ctrlKey && e.keyCode == 32) {	    // CTRL+spacebar
                 var nextViewmode = 
                     self.viewmode == Viewmode.Markdown
@@ -27,7 +30,6 @@ class Editor {
                     : Viewmode.Markdown
                 self.setViewmode(nextViewmode);
             }
-            self.document.MarkdownContent = $(self.editorElement).text();
         });
         $("#viewmode").on("click", () => {
             var nextTheme = 
@@ -57,11 +59,14 @@ class Editor {
      */
     public setViewmode(m: Viewmode): void {
         this.viewmode = m;
-        var viewmodeStr = m === Viewmode.Markdown
-            ? "html"
-            : "markdown"
-        $("body").removeClass("viewmode-html");
-        $("body").removeClass("viewmode-markdown");
-        $("body").addClass(`viewmode-${viewmodeStr}`);
+        if (m === Viewmode.HTML) {
+            var htmlContent = markdown.toHTML(this.markdownContent);
+            $(this.editorElement).html(htmlContent);
+            $(this.editorElement).prop("contenteditable", false);
+        }
+        else {
+            $(this.editorElement)[0].innerText = this.markdownContent;
+            $(this.editorElement).prop("contenteditable", true);
+        }
     }
 }
