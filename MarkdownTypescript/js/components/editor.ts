@@ -67,6 +67,7 @@ class Editor {
         else {
             $(this.editorElement)[0].innerText = this.markdownContent;
             $(this.editorElement).prop("contenteditable", true);
+            $(this.editorElement).focus();
         }
     }
 }

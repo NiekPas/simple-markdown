@@ -5,5 +5,5 @@ $(document).ready(() => {
     
     var e = new Editor($("#editor")[0]);
     e.setViewmode(Viewmode.Markdown);
-    e.setTheme(ThemeOption.Light);
+    e.setTheme(ThemeOption.Dark);
 });

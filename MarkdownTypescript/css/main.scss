@@ -13,26 +13,27 @@ body.theme-dark {
     color:#fff;
 }
 
-#viewmode {
+.editor-buttons-wrapper {
+    width: 120px;
+    text-align: center;
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
-    opacity: 0.2;
-    transition: opacity 0.4s;
-    &:hover {
-        opacity: 1;
+    #editor-buttons {
+        position: relative;
+        left: 120px;
+        transition: 0.4s ease-in-out;
+        ul {
+            list-style: none;
+        }
     }
 }
 
-.flex-container {
-    display: flex;
-    -ms-flex-flow: column nowrap;
-    -webkit-flex-flow: column nowrap;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+.editor-buttons-wrapper:hover #editor-buttons { // TODO this won't work on touch devices since they can't hover; implement solution.
+    left: 0;
 }
 
 #editor {
-    flex-basis: 100vh;
+    height: 100vh;
     padding:10px;
 }
