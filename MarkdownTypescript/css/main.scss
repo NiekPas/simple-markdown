@@ -11,26 +11,43 @@ body.theme-light {
 body.theme-dark {
     background-color:#1E1E1E;
     color:#fff;
+    #editor-buttons {
+        background-color: transparent;
+    }
 }
 
-.editor-buttons-wrapper {
+#editor-buttons-wrapper {
     width: 120px;
     text-align: center;
+
     position: fixed;
     top: 0;
+    margin: 0;
+    padding: 0;
     right: 0;
+    &.collapsed {
+        right: -100px;
+    }
     #editor-buttons {
+        transition: 0.2s ease-in-out;
         position: relative;
-        left: 120px;
-        transition: 0.4s ease-in-out;
+        left: 150px;
         ul {
             list-style: none;
+            padding: 0;
+            li {
+                padding: 10px;
+            }
         }
     }
 }
 
-.editor-buttons-wrapper:hover #editor-buttons { // TODO this won't work on touch devices since they can't hover; implement solution.
-    left: 0;
+@media (min-width: 992px) {
+    #editor-buttons-wrapper:hover { // TODO this won't work on touch devices since they can't hover; implement slide in from side.
+        #editor-buttons {
+            left: 0;
+        }
+    }
 }
 
 #editor {

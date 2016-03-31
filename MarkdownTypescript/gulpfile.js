@@ -13,4 +13,7 @@ gulp.task('sass', function() {
 
 gulp.task('typescript', shell.task('tsc'));
 
-gulp.task('default', ['sass', 'typescript']);
+gulp.task('default', function() {
+    gulp.watch('css/*.scss', ['sass']);
+    gulp.watch('js/**/*.ts', ['typescript']);
+});
