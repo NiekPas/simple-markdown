@@ -15,37 +15,21 @@ body.theme-dark {
         background-color: transparent;
     }
 }
-
-#editor-buttons-wrapper {
-    width: 120px;
-    text-align: center;
-
+#editor-buttons {
     position: fixed;
-    top: 0;
-    margin: 0;
-    padding: 0;
     right: 0;
-    &.collapsed {
-        right: -100px;
-    }
-    #editor-buttons {
-        transition: 0.2s ease-in-out;
-        position: relative;
-        left: 150px;
-        ul {
-            list-style: none;
-            padding: 0;
-            li {
-                padding: 10px;
-            }
-        }
-    }
-}
-
-@media (min-width: 992px) {
-    #editor-buttons-wrapper:hover { // TODO this won't work on touch devices since they can't hover; implement slide in from side.
-        #editor-buttons {
-            left: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently not supported by any browser */
+    ul {
+        list-style: none;
+        padding: 0;
+        li {
+            display: inline-block;
+            padding: 10px;
         }
     }
 }

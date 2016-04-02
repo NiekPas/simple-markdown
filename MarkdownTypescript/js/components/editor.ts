@@ -17,7 +17,7 @@ class Editor {
         this.initialize();
     }
     
-    private initialize(): void {
+    private initialize(): void {        // TODO this should maybe be in Main.ts
         var self = this;
         $("body").on("keyup", e => {
             if (self.viewmode === Viewmode.Markdown) {
@@ -31,12 +31,19 @@ class Editor {
                 self.setViewmode(nextViewmode);
             }
         });
-        $("#viewmode").on("click", () => {
+        $("#theme").on("click", () => {
             var nextTheme = 
                 self.theme == ThemeOption.Dark 
                 ? ThemeOption.Light 
                 : ThemeOption.Dark;
             self.setTheme(nextTheme);
+        });
+        $("#viewmode").on("click", () => {
+            var nextViewmode = 
+                self.viewmode == Viewmode.Markdown
+                ? Viewmode.HTML
+                : Viewmode.Markdown
+            self.setViewmode(nextViewmode);
         });
     }
     
@@ -46,11 +53,22 @@ class Editor {
      */
     public setTheme(t: ThemeOption) {
         this.theme = t;
-        var themeStr = t === ThemeOption.Dark
-            ? "dark"
-            : "light";
+        var themeStr: string;
+        var buttonClass: string;
+        
+        if (t === ThemeOption.Dark) {
+            themeStr = "dark";
+            buttonClass = "fa fa-sun-o";
+        }
+        else {
+            themeStr = "light";
+            buttonClass = "fa fa-moon-o";
+        }
+        
         $("body").removeClass("theme-light theme-dark");
         $("body").addClass(`theme-${themeStr}`);
+        
+        $("li#theme").children("i").removeClass().addClass(buttonClass);
     }
     
     /** 
@@ -63,11 +81,15 @@ class Editor {
             var htmlContent = markdown.toHTML(this.markdownContent);
             $(this.editorElement).html(htmlContent);
             $(this.editorElement).prop("contenteditable", false);
+            
+            $("li#viewmode").children("i").removeClass().addClass("fa fa-edit");
         }
         else {
             $(this.editorElement)[0].innerText = this.markdownContent;
             $(this.editorElement).prop("contenteditable", true);
             $(this.editorElement).focus();
+            
+            $("li#viewmode").children("i").removeClass().addClass("fa fa-font");
         }
     }
 }

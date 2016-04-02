@@ -6,27 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SimplyMarkdown</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">      <!-- TODO -->
     <link rel="stylesheet" href="css/main.css" type="text/css"/>
 </head>
 <body>
     
-    <div id="editor-buttons-wrapper">
-        <div id="editor-buttons">
-            <ul>
-                <li id="viewmode">
-                    theme
-                </li>
-                <li>
-                    html export
-                </li>
-                <li>
-                    md export
-                </li>
-                <li>
-                    Show html
-                </li>
-            </ul>
-        </div>
+    <div id="editor-buttons" unselectable="on">
+        <ul>
+            <li id="theme" unselectable="on">
+                <i unselectable="on"></i>
+            </li>
+            <li unselectable="on">
+                <i class="fa fa-code" unselectable="on"></i>
+            </li>
+            <li id="viewmode" unselectable="on">
+                <i unselectable="on"></i>
+            </li>
+        </ul>
     </div>
     
     <div id="editor" contenteditable="true"></div>
