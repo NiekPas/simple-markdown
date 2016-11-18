@@ -1,4 +1,7 @@
-﻿body {
+﻿$transition-default: 0.2s ease-out;
+$transition-long: 20s linear;
+
+body {
     padding: 0;
     margin: 0;
 }
@@ -15,22 +18,37 @@ body.theme-dark {
         background-color: transparent;
     }
 }
+
 #editor-buttons {
     position: fixed;
     right: 0;
+    top: 0;
+    width: 40px;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
     -khtml-user-select: none;    /* Konqueror */
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* IE/Edge */
     user-select: none;           /* non-prefixed version, currently not supported by any browser */
+
+    transition: transform 0.2s ease-out; 
+
+    &.collapsed {
+        transform: translateY(-80%);   
+    }
+
     ul {
         list-style: none;
         padding: 0;
+        margin: 0;
+
         li {
-            display: inline-block;
             padding: 10px;
             cursor: pointer;
+            i.fa-arrow-left {
+                opacity: 0;
+                transition: opacity $transition-long; 
+            }
         }
     }
 }
@@ -38,4 +56,7 @@ body.theme-dark {
 #editor {
     height: 100vh;
     padding:10px;
+    &:focus {
+        outline: 0;
+    }
 }

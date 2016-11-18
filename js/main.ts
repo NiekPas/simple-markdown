@@ -6,7 +6,8 @@ $(document).ready(() => {
     e.setViewmode(Viewmode.Markdown);
     e.setTheme(ThemeOption.Dark);
     
-    $("#editor-buttons-arrow-wrapper").on("click", () => {
-        $("#editor-buttons-wrapper").toggleClass("collapsed");
+    $("#options-visibility").on("click", () => {
+        $("#editor-buttons").toggleClass("collapsed");
+        $("#options-visibility i").toggleClass("fa-arrow-right").toggleClass("fa-arrow-left");
     });
 });
