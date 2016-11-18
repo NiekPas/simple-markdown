@@ -26,37 +26,50 @@ class Editor {
             if (e.ctrlKey && e.keyCode == 32) {	    // CTRL+spacebar
                 var nextViewmode =
                     self.viewmode == Viewmode.Markdown
-                    ? Viewmode.HTML
-                    : Viewmode.Markdown
+                        ? Viewmode.HTML
+                        : Viewmode.Markdown
                 self.setViewmode(nextViewmode);
             }
         });
         $("#theme").on("click", () => {
             var nextTheme =
                 self.theme == ThemeOption.Dark
-                ? ThemeOption.Light
-                : ThemeOption.Dark;
+                    ? ThemeOption.Light
+                    : ThemeOption.Dark;
             self.setTheme(nextTheme);
         });
         $("#viewmode").on("click", () => {
             var nextViewmode =
                 self.viewmode == Viewmode.Markdown
-                ? Viewmode.HTML
-                : Viewmode.Markdown
+                    ? Viewmode.HTML
+                    : Viewmode.Markdown
             self.setViewmode(nextViewmode);
         });
         $("#html").on("click", () => {
-            var copyEvent = new ClipboardEvent('copy', { dataType: 'text/plain', data: 'Data to be copied' } );
-            document.dispatchEvent(copyEvent);
-            
-            var html = markdown.toHTML(self.markdownContent);
-            var w = window.open();
-            $(w.document.body).text(html);
+            if (this.copyToClipboard()) {
+                // do something UI ish
+            };
         });
         $("#options-visibility").on("click", () => {
             $("#editor-buttons").toggleClass("collapsed");
             $("#options-visibility i").toggleClass("fa-arrow-right").toggleClass("fa-arrow-left");
         });
+    }
+
+    private copyToClipboard(): boolean {
+        // This is messy, but:
+        // 
+        const text = $("#editor").text();
+        
+        $("body").append("<input style=\"outline:0 !important;\" id=\"hidden-html\" value=\"" + text + "\">" + "</input>");
+        $("#hidden-html").select();
+        try {
+            var successful = document.execCommand('copy');
+            if (successful) return true;
+            return false;
+        } catch (err) {
+            return false;
+        }
     }
 
     /**
