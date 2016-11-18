@@ -53,6 +53,10 @@ class Editor {
             var w = window.open();
             $(w.document.body).text(html);
         });
+        $("#options-visibility").on("click", () => {
+            $("#editor-buttons").toggleClass("collapsed");
+            $("#options-visibility i").toggleClass("fa-arrow-right").toggleClass("fa-arrow-left");
+        });
     }
 
     /**
