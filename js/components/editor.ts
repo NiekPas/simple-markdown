@@ -47,8 +47,12 @@ class Editor {
         });
         $("#html").on("click", () => {
             if (this.copyToClipboard()) {
-                // do something UI ish
-            };
+                const tooltip = "<div class=\"tooltip\">Copied to clipboard!</div>"
+                $("#html").append(tooltip);
+            }
+            else {
+                // open a new window with the content
+            }
         });
         $("#options-visibility").on("click", () => {
             $("#editor-buttons").toggleClass("collapsed");
