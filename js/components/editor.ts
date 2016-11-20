@@ -65,7 +65,15 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         });
         $("#fullscreen").on('click', () => {
             const body = document.getElementsByTagName('body')[0];
-            body.mozRequestFullScreen();
+            if(body.requestFullscreen) {
+                body.requestFullscreen();
+            } else if(body.mozRequestFullScreen) {
+                body.mozRequestFullScreen();
+            } else if(body.webkitRequestFullscreen) {
+                body.webkitRequestFullscreen();
+            } else if(body.msRequestFullscreen) {
+                body.msRequestFullscreen();
+            }
         });
         $("#options-visibility").on("click", () => {
             $("#editor-buttons").toggleClass("collapsed");
