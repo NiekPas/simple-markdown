@@ -4,6 +4,7 @@ class Editor {
     private markdownContent: string;
     private viewmode: Viewmode;
     private theme: ThemeOption;
+    private fullscreen: boolean = false;
     editorElement: HTMLElement;
 
     /**
@@ -65,14 +66,33 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         });
         $("#fullscreen").on('click', () => {
             const body = document.getElementsByTagName('body')[0];
-            if(body.requestFullscreen) {
-                body.requestFullscreen();
-            } else if(body.mozRequestFullScreen) {
-                body.mozRequestFullScreen();
-            } else if(body.webkitRequestFullscreen) {
-                body.webkitRequestFullscreen();
-            } else if(body.msRequestFullscreen) {
-                body.msRequestFullscreen();
+
+            if (!this.fullscreen) {
+                if (body.requestFullscreen) {
+                    body.requestFullscreen();
+                    this.fullscreen = true;
+                } else if (body.mozRequestFullScreen) {
+                    body.mozRequestFullScreen();
+                    this.fullscreen = true;
+                } else if (body.webkitRequestFullscreen) {
+                    body.webkitRequestFullscreen();
+                    this.fullscreen = true;
+                } else if (body.msRequestFullscreen) {
+                    body.msRequestFullscreen();
+                    this.fullscreen = true;
+                }
+            }
+            else {
+                if (body.exitFullscreen) {
+                    body.exitFullscreen();
+                    this.fullscreen = false;
+                } else if (body.mozCancelFullScreen) {
+                    body.mozCancelFullScreen();
+                    this.fullscreen = false;
+                } else if (body.webkitExitFullscreen) {
+                    body.webkitExitFullscreen();
+                    this.fullscreen = false;
+                }
             }
         });
         $("#options-visibility").on("click", () => {
@@ -86,7 +106,7 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         let ele = $("#editor");
         let text: string = ele.html();
         text = text.replace(/\<br\>/g, '\n');
-        
+
         $("body").append("<textarea style=\"outline:0 !important;\" id=\"hidden-html\">" + "</textarea>");
         $("#hidden-html").val(text);
         $("#hidden-html").select();
