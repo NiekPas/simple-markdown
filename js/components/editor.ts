@@ -49,6 +49,7 @@ class Editor {
             if (this.copyToClipboard()) {
                 const tooltip = "<div class=\"tooltip\">Copied to clipboard!</div>"
                 $("#html").append(tooltip);
+                $(".tooltip").delay(2000).fadeOut(1000);
             }
             else {
                 // open a new window with the content
@@ -71,12 +72,13 @@ class Editor {
         $("#hidden-html").select();
         try {
             var successful = document.execCommand('copy');
+            $("#hidden-html").remove();
             if (successful) return true;
             return false;
         } catch (err) {
+            $("#hidden-html").remove();
             return false;
         }
-        $("#hidden-html").remove();
     }
 
     /**
