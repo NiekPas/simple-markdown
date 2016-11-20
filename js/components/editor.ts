@@ -13,7 +13,13 @@ class Editor {
     */
     constructor(el: HTMLElement) {
         this.editorElement = el;
-        this.markdownContent = "# Markdown document example\n\nThis is a paragraph";
+        this.markdownContent = `# SimpleMarkdown
+
+(Tip: press ctrl+space to view this introduction in formatted version).
+
+SimpleMarkdown is a minimalist markdown editor, designed to allow you to work without distractions. Turn on the dark mode, switch to fullscreen mode, preview your work, and when you're done, download an .md or .html file, or copy your work to the clipboard.
+
+For a complete Markdown guide, go [here](https://daringfireball.net/projects/markdown/basics).`;
         this.initialize();
     }
 
