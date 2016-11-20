@@ -58,7 +58,9 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
                 $(".tooltip").delay(2000).fadeOut(1000);
             }
             else {
-                // open a new window with the content
+                const html = markdown.toHTML(self.markdownContent);
+                const w = window.open();
+                $(w.document.body).text(html);
             }
         });
         $("#options-visibility").on("click", () => {
