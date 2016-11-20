@@ -51,6 +51,7 @@ body.theme-dark {
 
 #editor {
     height: 100vh;
+    width: 98vw;    // Ensure there is no overlap between editor-buttons and text
     padding:10px;
     &:focus {
         outline: 0;
