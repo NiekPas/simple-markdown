@@ -54,9 +54,9 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         });
         $("#html").on("click", () => {
             if (this.copyToClipboard()) {
-                const tooltip = "<div class=\"tooltip\">Copied to clipboard!</div>"
+                const tooltip = "<div class=\"tooltip-wrapper\"><div class=\"tooltip-arrow\"></div><div class=\"tooltip\">Copied to clipboard!</div></div>"
                 $("#html").append(tooltip);
-                $(".tooltip").delay(2000).fadeOut(1000);
+                $(".tooltip-wrapper").delay(2000).fadeOut(1000);
             }
             else {
                 const html = markdown.toHTML(self.markdownContent);
