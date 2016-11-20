@@ -1,5 +1,4 @@
 ﻿$transition-default: 0.2s ease-out;
-$transition-long: 20s linear;
 
 body {
     padding: 0;
@@ -35,7 +34,7 @@ body.theme-dark {
     transition: transform 0.2s ease-out; 
 
     &.collapsed {
-        transform: translateY(-80%);   
+        transform: translateY(-80%);
     }
 
     ul {
@@ -46,10 +45,6 @@ body.theme-dark {
         li {
             padding: 10px;
             cursor: pointer;
-            i.fa-arrow-left {
-                opacity: 0;
-                transition: opacity $transition-long; 
-            }
         }
     }
 }

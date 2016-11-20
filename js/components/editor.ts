@@ -56,7 +56,6 @@ class Editor {
         });
         $("#options-visibility").on("click", () => {
             $("#editor-buttons").toggleClass("collapsed");
-            $("#options-visibility i").toggleClass("fa-arrow-right").toggleClass("fa-arrow-left");
         });
     }
 
