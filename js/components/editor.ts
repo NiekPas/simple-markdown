@@ -62,9 +62,12 @@ class Editor {
     private copyToClipboard(): boolean {
         // This is messy, but:
         // 
-        const text = $("#editor").text();
+        let ele = $("#editor");
+        let text: string = ele.html();
+        text = text.replace(/\<br\>/g, '\n');
         
-        $("body").append("<input style=\"outline:0 !important;\" id=\"hidden-html\" value=\"" + text + "\">" + "</input>");
+        $("body").append("<textarea style=\"outline:0 !important;\" id=\"hidden-html\">" + "</textarea>");
+        $("#hidden-html").val(text);
         $("#hidden-html").select();
         try {
             var successful = document.execCommand('copy');
@@ -73,6 +76,7 @@ class Editor {
         } catch (err) {
             return false;
         }
+        $("#hidden-html").remove();
     }
 
     /**
