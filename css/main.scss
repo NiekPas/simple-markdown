@@ -1,4 +1,4 @@
-﻿$transition-default: 0.2s ease-out;
+﻿$transition-default: 0.3s ease-out;
 
 body {
     padding: 0;
@@ -31,7 +31,7 @@ body.theme-dark {
     -ms-user-select: none;       /* IE/Edge */
     user-select: none;           /* non-prefixed version, currently not supported by any browser */
 
-    transition: transform 0.2s ease-out; 
+    transition: transform $transition-default;
 
     &.collapsed {
         transform: translateY(-80%);
