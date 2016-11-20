@@ -23,7 +23,7 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         this.initialize();
     }
 
-    private initialize(): void {        // TODO this should maybe be in Main.ts
+    private initialize(): void {
         var self = this;
         $("body").on("keyup", e => {
             if (self.viewmode === Viewmode.Markdown) {
@@ -62,6 +62,10 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
                 const w = window.open();
                 $(w.document.body).text(html);
             }
+        });
+        $("#fullscreen").on('click', () => {
+            const body = document.getElementsByTagName('body')[0];
+            body.mozRequestFullScreen();
         });
         $("#options-visibility").on("click", () => {
             $("#editor-buttons").toggleClass("collapsed");
