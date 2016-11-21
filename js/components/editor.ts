@@ -54,9 +54,26 @@ For a complete Markdown guide, go [here](https://daringfireball.net/projects/mar
         });
         $("#html").on("click", () => {
             if (this.copyToClipboard()) {
-                const tooltip = "<div class=\"tooltip-wrapper\"><div class=\"tooltip-arrow\"></div><div class=\"tooltip\">Copied to clipboard!</div></div>"
-                $("#html").append(tooltip);
-                $(".tooltip-wrapper").delay(2000).fadeOut(1000);
+                // const tooltip = "<div class=\"tooltip-wrapper\"><div class=\"tooltip-arrow\"></div><div class=\"tooltip\">Copied to clipboard!</div></div>"
+                // $("#html").append(tooltip);
+                // $(".tooltip-wrapper").delay(2000).fadeOut(1000);
+
+                const button = $("#html i.fa-code");
+                // Change the fa-code to a fa-check
+                button.removeClass("fa-code").addClass("fa-check");
+                // wait 1000 milliseconds, then:
+                setTimeout(() => {
+                    // fadeout in 250 milliseconds, without affecting layout (thus 'animate', not fadeOut()).
+                    button.animate({
+                        opacity: 0
+                    }, 150, "swing", () => {
+                        // When fadeout is done, change the fa-check back to a fa-code and fade back in
+                        button.removeClass("fa-check").addClass("fa-code");
+                        button.animate({
+                            opacity: 1
+                        }, 150);
+                    });
+                }, 1000);
             }
             else {
                 const html = markdown.toHTML(self.markdownContent);
